@@ -1,13 +1,100 @@
 # Chat MASTER
 
-<p>
-    <a href="#联系我们"><img src="https://img.shields.io/badge/MasterAII-blue" alt="公众号"></a>
-    <a href="https://gitee.com/panday94/chat-master" target="_blank">
-    	<img src="https://svg.hamm.cn/gitee.svg?type=star&user=panday94&project=chat-master"/>
-    </a>
-</p>
+## 项目功能分支说明
+● chat-master-server java服务项目，技术采用Java8 + Mysql5.7 + Redis
+● chat-master-admin 后台管理项目，技术采用vue2 + Element UI
+● chat-master-web 网页端项目，技术采用vue3 + TypeScript + NaiveUI + Tailwind
+● chat-master-uniapp 移动端项目，采用Uniapp进行开发，支持将项目打包成H5、小程序、Android及iOS
 
-![](https://img.shields.io/badge/SpringBoot-2.3.7-brightgreen.svg) [![star](https://gitcode.com/panday94/chat-master/star/badge.svg)](https://gitcode.com/panday94/chat-master)
+
+## 后端项目：chat-master-server
+部署说明
+本地开发
+使用 IDEA 导入文件夹 chat-master/chat-master-server 目录。
+
+### 第一步、修改配置文件
+修改spring.profiles.active=dev
+本地开发
+使用 IDEA 导入文件夹 chat-master/chat-master-server 目录。
+第一步、修改配置文件
+
+修改spring.profiles.active=dev
+
+```
+# 注意检查环境
+spring:
+  # 环境 dev|test|prod
+  profiles:
+    active: dev
+```
+
+### 第二步：将application-dev.yml 的 Mysql、Redis 的配置信息修改为自己的
+
+```
+spring:
+  # 缓存
+  redis:
+    open: true  # 是否开启redis缓存  true开启   false关闭
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password:  # 密码（默认为空）
+    timeout: 6000  # 连接超时时长（毫秒
+    lettuce:
+      pool:
+        max-active: 1000  # 连接池最大连接数（使用负值表示没有限制）
+        max-wait: -1      # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-idle: 10      # 连接池中的最大空闲连接
+        min-idle: 5       # 连接池中的最小空闲连接
+  #指定数据源
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    #多数据源配置
+    dynamic:
+      primary: master
+      strict: false #严格匹配数据源,默认false. true未匹配到指定数据源时抛异常,false使用默认数据源
+      datasource:
+        # 数据库1
+        master:
+          driver-class-name: com.mysql.jdbc.Driver
+          url: jdbc:mysql://127.0.0.1:3306/chat_gpt?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=GMT%2B8
+          username: root
+          password: 123456
+        # 数据库2
+        slave_1:
+          driver-class-name: com.mysql.jdbc.Driver
+          url: jdbc:mysql://127.0.0.1:3306/chat_gpt?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=GMT%2B8
+          username: root
+          password: 123456
+```
+### 第三步、执行sql
+
+● 执行chat-master-server/sql/chat-master.sql即可
+● 如升级时有必要的话检查一下update.sql中最新的sql语句，确认是否需要执行。
+
+### 第四步、替换model表中的模型版本version字段或在后台配置
+![替换model变中version字段](./test1.png)
+
+第五步、替换openkey表中的模型app_key信息或在后台配置
+![替换openkey表中的模型app_key信息或在后台配置](./test2.png)
+
+
+### 第六步、启动ChatApplication中的main方法
+
+```
+# 输出到这启动完成
+Started ChatApplication in 7.21 seconds (JVM running for 8.124)
+```
+
+
+## 打包项目说明：
+这里使用idea编辑器进行打包，如使用其他编辑器需自行百度，打包后的文件为chat-api/target/chat-master.jar
+⚠️ 此处需要注意你是使用dev环境还是test环境还是prod（生产）环境，部署以dev环境示例。
+![打包环境说明](./test3.png)
+
+注意：官网文档：
+[官网文档内容](https://www.yuque.com/panday94/ct0azl/ehxcgoy0xg41l9c3#IQmnv)
+
 
 
 > 声明：此项目发布于码云、GitCode和GitHub，基于 Apache 协议，免费且作为开源学习使用，禁止转卖、谨防受骗。如需商用必须保留版权信息，请自觉遵守。确保合法合规使用，在运营过程中产生的一切任何后果自负，与作者无关。
