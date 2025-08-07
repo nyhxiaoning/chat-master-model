@@ -1,6 +1,20 @@
 # Chat MASTER
 
 ## 项目功能分支说明
+注意：官网文档：
+[官网文档内容](https://www.yuque.com/panday94/ct0azl/ehxcgoy0xg41l9c3#IQmnv)
+
+### java项目报错：这个错误的核心问题出在 MyBatis 使用了 dynamic-datasource（多数据源配置） ，但是你的配置中没有正确指定主数据源（primary datasource），因此启动失败。
+
+✅ 方法一：在 application.dev.yml 中正确配置主数据源
+配置了主从动态配置，删除一个，剩余一个
+
+
+
+
+### 解决mysql的账号和远程连接后，密码错误的问题
+这个和docker镜像配置mysql的权限有关
+
 ● chat-master-server java服务项目，技术采用Java8 + Mysql5.7 + Redis
 ● chat-master-admin 后台管理项目，技术采用vue2 + Element UI
 ● chat-master-web 网页端项目，技术采用vue3 + TypeScript + NaiveUI + Tailwind
@@ -87,13 +101,24 @@ Started ChatApplication in 7.21 seconds (JVM running for 8.124)
 ```
 
 
-## 打包项目说明：
+### 打包项目说明：
 这里使用idea编辑器进行打包，如使用其他编辑器需自行百度，打包后的文件为chat-api/target/chat-master.jar
 ⚠️ 此处需要注意你是使用dev环境还是test环境还是prod（生产）环境，部署以dev环境示例。
 ![打包环境说明](./test3.png)
 
 注意：官网文档：
 [官网文档内容](https://www.yuque.com/panday94/ct0azl/ehxcgoy0xg41l9c3#IQmnv)
+
+
+### 项目java导入的时候，注意：配置IDE的当前的JDK
+版本需要时：jdk8
+
+同时使用jenv管理jdk版本，注意切换jdk版本。
+
+### 找到chat-api项目，启动
+启动后：访问端口：
+- 同时，通过对应的chat-master-web项目，这里访问即可测试。
+
 
 
 
