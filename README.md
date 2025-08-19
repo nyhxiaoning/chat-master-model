@@ -5,6 +5,16 @@
 
 - 客户端账号密码自行注册，登录即注册
 
+## docker安装好：mysql8.0和redis
+- redis默认没有密码
+- mysql8.0这里注意：账号密码使用默认都是：chat_master
+然后这里的数据库创建后，这里注意，分配账号权限：
+8.0的账号权限分配：
+```bash
+授权 chat_master 的数据库权限：针对mysql8.0
+GRANT ALL PRIVILEGES ON *.* TO 'chat_master'@'%' WITH GRANT OPTION;
+```
+
 ## 项目功能分支说明
 注意：官网文档：
 [官网文档内容](https://www.yuque.com/panday94/ct0azl/ehxcgoy0xg41l9c3#IQmnv)
