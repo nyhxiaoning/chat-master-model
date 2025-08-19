@@ -1,5 +1,6 @@
-# ChatMASTER 部署运行教程
+# ChatMASTER 部署运行教程：本地和docker部署
 
+## 支持一键部署
 > 若需要本地运行及开发建议您参考[运行](#运行适用于windowsmaclinux)教程，若您是小白只想直接使用，可以查看[一键部署](#docker-compose-一键部署推荐)
 - 后台管理系统默认密码为admin 123456 
 - 客户端账号密码自行注册，登录即注册
@@ -12,8 +13,12 @@
 - 本地[运行](#运行适用于windowsmaclinux)
 
 ## 安装Docker
-
-> 数据库名称chat_master，账号chat_master 密码chat_master
+### 这里的mysql的账号和密码
+- 命令行创建数据库
+```shell
+create database chat_master;
+```
+> 数据库名称chat_master，账号 chat_master 密码 chat_master
 
 ### 安装Docker(如已安装则跳过，可能会出现镜像源无法拉取问题自行百度)
 
@@ -43,7 +48,13 @@ cd /usr/local/data/
 ```
 
 ## Docker Compose 一键部署（推荐）
-
+// 查看mac的ip
+```shell
+```shell
+ifconfig | grep "inet " | grep -v IP_ADDRESSifconfig | grep "inet " | grep -v 127.0.0.1
+```
+### 启动注意：
+这里注意：默认不要启动docker中redis，mysql，因为可能造成端口占用报错
 ### 安装Docker
 - [安装教程](#docker部署)
 
@@ -87,7 +98,7 @@ cd deploy/
 docker-compose up -d
 ```
 
-### 访问
+### 访问：docker部署完成后，访问方式
 
 - 打开ChatMaster客户端，访问地址：http://你的ip
 

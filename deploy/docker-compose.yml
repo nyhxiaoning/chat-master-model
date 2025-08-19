@@ -9,7 +9,7 @@ services:
     container_name: chat-master-mysql
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     environment:
-      - MYSQL_ROOT_PASSWORD=12345678
+      - MYSQL_ROOT_PASSWORD=nyh123
       - MYSQL_DATABASE=chat_master
       - MYSQL_USER=chat_master
       - MYSQL_PASSWORD=chat_master
