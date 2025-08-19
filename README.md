@@ -1,16 +1,19 @@
 # Chat MASTER
+# 本地部署方式问题汇总
+
 
 ## 项目功能分支说明
 注意：官网文档：
 [官网文档内容](https://www.yuque.com/panday94/ct0azl/ehxcgoy0xg41l9c3#IQmnv)
 
-### java项目报错：这个错误的核心问题出在 MyBatis 使用了 dynamic-datasource（多数据源配置） ，但是你的配置中没有正确指定主数据源（primary datasource），因此启动失败。
+## 解决当前的chat-api的mysql的8.0的部署的账号密码远程权限基本可以了。
+- 其他的配置不用修改
+- 远程权限访问修改：
+```bash
+授权 chat_master 的数据库权限：针对mysql8.0
+GRANT ALL PRIVILEGES ON *.* TO 'chat_master'@'%' WITH GRANT OPTION;
 
-✅ 方法一：在 application.dev.yml 中正确配置主数据源
-配置了主从动态配置，删除一个，剩余一个
-
-
-
+```
 
 ### 解决mysql的账号和远程连接后，密码错误的问题
 这个和docker镜像配置mysql的权限有关
@@ -124,7 +127,14 @@ Started ChatApplication in 7.21 seconds (JVM running for 8.124)
 
 > 声明：此项目发布于码云、GitCode和GitHub，基于 Apache 协议，免费且作为开源学习使用，禁止转卖、谨防受骗。如需商用必须保留版权信息，请自觉遵守。确保合法合规使用，在运营过程中产生的一切任何后果自负，与作者无关。
 
-# 项目简介
+
+
+
+
+
+# 项目简介和部署说明地址：
+- 部署相关文件在[deploy](deploy)
+
 ChatMASTER，基于AI大模型api实现的自建后端对话服务，支出同步响应及流式响应，完美呈现打印机效果。支持一键切换DeepSeek(支持满血版R1模型)、月之暗面（Kimi）、豆包、OpenAI、Claude3、文心一言、通义千问、讯飞星火、智谱清言(ChatGLM)、书生浦语等主流模型，并且支持使用Ollama和Langchain进行加载本地模型及知识库问答，同时支持扣子(Coze)、Dify、Gitee AI（模力方舟）、FastGPT等在线api接口，LinkAI对接中。
 
 > 项目包含java服务端、网页端、移动端及管理后台配置。Java服务端master分支默认使用Jdk8，SpringBoot3分支使用Jdk17/20，[SpringBoot3](https://gitee.com/panday94/chat-master/tree/springboot3)
@@ -156,33 +166,6 @@ GitHub直通车[点我传送](https://github.com/panday94/chatgpt-master)
 * 阿里云折扣场：[点我进入](https://www.aliyun.com/minisite/goods?userCode=iqguofg4)，腾讯云秒杀场：[点我进入](https://curl.qcloud.com/11y0ob0f)&nbsp;&nbsp;
 * 阿里云优惠券：[点我领取](https://www.aliyun.com/daily-act/ecs/activity_selection?userCode=iqguofg4)，腾讯云优惠券：[点我领取](https://curl.qcloud.com/EUbjrCcu)&nbsp;&nbsp;
 
-## 演示
-
-网页端演示地址：https://chatmaster.top 移动端可关注公众号[扫码体验](#联系我们)
-
-管理端演示地址：https://chatmaster.top/admin/#  密码：master chatmaster
-
-![cover](./doc/file/app.png)
-![cover](./doc/file/login.jpg)
-![cover](./doc/file/index.png)
-![cover](./doc/file/chat.gif)
-<table>
-    <tr>
-        <td><img src="./doc/file/admin/1.jpg"/></td>
-        <td><img src="./doc/file/admin/2.jpg"/></td>
-    </tr>
-    <tr>
-        <td><img src="./doc/file/admin/3.jpg" /></td>
-        <td><img src="./doc/file/admin/4.jpg"/></td>
-    </tr>
-	<tr>
-        <td><img src="./doc/file/admin/5.jpg"/></td>
-        <td><img src="./doc/file/admin/6.jpg"/></td>
-    </tr>
-    	<tr>
-        <td><img src="./doc/file/admin/7.jpg"/></td>
-    </tr>
-</table>
 
 ## 已实现功能
 1. 支持后台配置大模型信息及模型版本信息，同时支持配置模型密钥信息
